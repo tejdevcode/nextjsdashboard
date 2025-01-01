@@ -1,12 +1,5 @@
 import { sql } from '@vercel/postgres';
-import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
-  InvoicesTable,
-  LatestInvoiceRaw,
-  Revenue,
-} from './definitions';
+import { CustomerField, CustomersTableType, InvoiceForm, InvoicesTable, LatestInvoiceRaw, Revenue, } from './definitions';
 import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {
@@ -84,22 +77,13 @@ export async function fetchCardData() {
 }
 
 const ITEMS_PER_PAGE = 6;
-export async function fetchFilteredInvoices(
-  query: string,
-  currentPage: number,
-) {
+export async function fetchFilteredInvoices( query: string, currentPage: number, ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
     const invoices = await sql<InvoicesTable>`
       SELECT
-        invoices.id,
-        invoices.amount,
-        invoices.date,
-        invoices.status,
-        customers.name,
-        customers.email,
-        customers.image_url
+        invoices.id, invoices.amount, invoices.date, invoices.status, customers.name, customers.email, customers.image_url
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
       WHERE
@@ -168,10 +152,7 @@ export async function fetchInvoiceById(id: string) {
 export async function fetchCustomers() {
   try {
     const data = await sql<CustomerField>`
-      SELECT
-        id,
-        name
-      FROM customers
+      SELECT id, name FROM customers
       ORDER BY name ASC
     `;
 
