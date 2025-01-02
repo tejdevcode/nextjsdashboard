@@ -15,7 +15,7 @@ const Page = async (props: {
      /* const customers = await fetchCustomers(); */
   return (
     <div className="w-full">      
-       <Suspense key={query + currentPage} fallback={<TableRowSkeleton />}>
+       <Suspense key={query + currentPage} fallback={'Loading...'}>
         <Table  customers={customers} />
       </Suspense>
       {/* <div className="mt-5 flex w-full justify-center">
