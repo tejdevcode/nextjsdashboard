@@ -85,7 +85,7 @@ export async function updateInvoice(id: string, prevState: State, formData: Form
 
    const { customerId, amount, status } = validatedFields.data;
    const amountInCents = amount * 100;
-   console.log(id)
+   /* console.log(id) */
 
    try {
       await sql`
@@ -115,7 +115,6 @@ export async function deleteInvoice(id: string) {
 export async function authenticate(prevState: string | undefined, formData: FormData) {
    try {
       await signIn('credentials', Object.fromEntries(formData));
-
    } catch (error) {
       if (error instanceof AuthError) {
          switch (error.type) {
@@ -126,5 +125,7 @@ export async function authenticate(prevState: string | undefined, formData: Form
          }
       }
       throw error;
+   } finally {
+      redirect('/dashboard');
    }
 }
