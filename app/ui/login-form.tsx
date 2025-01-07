@@ -9,7 +9,7 @@ import { useActionState } from 'react';
 import { authenticate } from '@/app/lib/actions';
 
 export default function LoginForm() {
-  const [errorMessage, formAction, isPending] = useActionState( authenticate, undefined );
+  const [errorMessage, formAction, isPending] = useActionState(authenticate, undefined);
   return (
     <form className="space-y-3" action={formAction}>
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
@@ -30,6 +30,7 @@ export default function LoginForm() {
                 placeholder="Enter your email address"
                 required
                 autoComplete="username"
+                defaultValue={'user@nextmail.com'}
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -48,6 +49,7 @@ export default function LoginForm() {
                 placeholder="Enter password"
                 required
                 minLength={6}
+                defaultValue={'123456'}
               />
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -57,7 +59,7 @@ export default function LoginForm() {
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div className="flex h-8 items-end space-x-1" aria-live="polite" aria-atomic="true">
-          {/* Add form errors here */}          
+          {/* Add form errors here */}
           {errorMessage && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
