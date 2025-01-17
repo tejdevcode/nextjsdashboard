@@ -5,11 +5,16 @@ import { AtSymbolIcon, KeyIcon, ExclamationCircleIcon, } from '@heroicons/react/
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { authenticate } from '@/app/lib/actions';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const router = useRouter();
   const [errorMessage, formAction, isPending] = useActionState(authenticate, undefined);
+  useEffect(() => {
+    router.push('/dashboard');
+  }, [isPending]);
   return (
     <form className="space-y-3" action={formAction}>
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
