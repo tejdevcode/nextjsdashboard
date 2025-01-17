@@ -115,6 +115,7 @@ export async function deleteInvoice(id: string) {
 export async function authenticate(prevState: string | undefined, formData: FormData) {
    try {
       await signIn('credentials', Object.fromEntries(formData));
+      //redirect('/dashboard');
    } catch (error) {
       if (error instanceof AuthError) {
          switch (error.type) {
@@ -126,6 +127,6 @@ export async function authenticate(prevState: string | undefined, formData: Form
       }
       throw error;
    } finally {
-      redirect('/dashboard');
+
    }
 }
